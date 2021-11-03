@@ -1,5 +1,7 @@
 import React from 'react'
-import {View, StyleSheet, Text, TextInput, TouchableOpacity} from 'react-native'
+import {View, StyleSheet, Text, TextInput, TouchableOpacity, Image} from 'react-native'
+
+import {Plus} from '../../Assets/Images'
 
 const SearchBar = ({value, setValue, onPress}) =>{
     return(
@@ -19,9 +21,10 @@ const SearchBar = ({value, setValue, onPress}) =>{
                 onPress={onPress}
                 style={styles.button}
             >
-                <Text>
-                    Add
-                </Text>
+                <Image
+                    style={styles.buttonImage}
+                    source={Plus}
+                />
             </TouchableOpacity>
         </View>
 
@@ -35,21 +38,28 @@ const styles = StyleSheet.create({
         height: 80,
         flexDirection: 'row',
         alignItems: "center",
-        justifyContent: 'space-around'
+        justifyContent: 'space-around',
+        padding: 10
     },
       
     input: {
         width: '80%',
         borderWidth: 1,
         height: 50,
-        fontSize: 18
+        fontSize: 24,
+        borderRadius: 10,
+        paddingLeft: 10,
     },  
     button:{
-        width: 50,
-        height: 50,
-        borderWidth: 1,
+        width: 60,
+        height: 60,
+        // borderWidth: 1,
         alignItems: 'center',
         justifyContent: 'center'
+    },
+    buttonImage:{
+        width:60,
+        height: 60    
     }
 
 })

@@ -30,13 +30,14 @@ const styles = StyleSheet.create({
         justifyContent: 'space-around'
     },
     innerContainer:{
-        width:'90%',
+        width:'85%',
         borderBottomWidth: 1,
+        paddingLeft: 10
     },
     text:{
         fontSize: 30,
         color: 'black',
-        fontWeight: 'bold'
+        fontWeight: 'bold',
     }
   
 

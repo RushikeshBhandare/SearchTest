@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import {View, FlatList, Text} from 'react-native'
+import DisplayList from '../../Components/DisplayList'
 import ListItem from '../../Components/ListItem'
-import ResultNotFound from '../../Components/ResultNotFound'
 import SearchBar from '../../Components/SearchBar'
 
 // data
@@ -41,41 +41,27 @@ const Home = ( ) =>{
 
     // filter out the list that contain only search term 
     const filterList=()=>{
-        const list = items.filter((item)=>{
-
-            return item.name.toLocaleLowerCase().includes(searchText.toLowerCase())
-        })
-        setFilterdItem(list)       
+        if(items){
+            const list = items.filter((item)=>{
+                return item.name.toLocaleLowerCase().includes(searchText.toLowerCase())
+            })
+            setFilterdItem(list)       
+        }else{
+            return
+        }
     }
 
     // Add a random word in a items list 
     const addRandomWord = () =>{
-        const word = randomWords[Math.floor(Math.random()*randomWords.length)]
-        setItems([...items, {name: word}])
-        setSearchText('')
-    }
-
-    // Render the List of items and check if the item is found or not
-    const renderItem = ()=>{
-        if(filterditem.length != 0){
-            return(
-                <FlatList
-                    data={filterditem}
-                    renderItem={({item})=>{
-                        return(
-                        <ListItem
-                                name={item.name}
-                        />
-                        )
-                    }}
-            />
-            )
+        if(randomWords.length > 0){
+            const word = randomWords[Math.floor(Math.random()*randomWords.length)]
+            setItems([...items, {name: word}])
+            setSearchText('')
         }else{
-            return(
-                <ResultNotFound />
-            )
+            // console.log('random word is undefinde')
+            return
         }
-    } 
+    }
 
     return(
         <View>
@@ -86,8 +72,8 @@ const Home = ( ) =>{
                 onPress={addRandomWord}
             />
             
-            {/* render the list of items */}
-           {renderItem()}
+            {/* Display List Of items */}
+            <DisplayList data={filterditem}/>
        
         </View>
     )
